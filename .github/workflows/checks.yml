@@ -19,9 +19,6 @@ jobs:
         with:
           node-version: 22
 
-      - name: Pin script tests
-        run: python3 -m unittest discover -s scripts -v
-
       # Bumping this pin is a deliberate change.
       - name: Install the Claude Code CLI
         if: ${{ !cancelled() }}

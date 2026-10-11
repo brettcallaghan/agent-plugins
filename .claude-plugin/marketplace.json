@@ -23,7 +23,7 @@
         "source": "git-subdir",
         "url": "brettcallaghan/release",
         "path": "plugin",
-        "ref": "v0.3.0"
+        "ref": "stable"
       },
       "description": "Release management with the release CLI: the cut-release skill previews and cuts a release with the release standards built in, provisioning the CLI version the plugin pins; the changelog skill authors a release's changelog for the CLI"
     }
