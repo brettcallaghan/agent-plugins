@@ -1,0 +1,47 @@
+name: pin releases
+
+# Moves each release-pinned plugin in the marketplace to its source's latest
+# published release, and commits the change to main. Plugin repositories need
+# no write access here: the marketplace pulls their releases.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  # Run now, rather than at the next hour, after publishing a release.
+  workflow_dispatch:
+  # A source repository can trigger a run with a token that may dispatch here.
+  repository_dispatch:
+    types: [plugin-released]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pin-releases
+  cancel-in-progress: false
+
+jobs:
+  pin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # PLUGIN_SOURCES_TOKEN must read every private source repository
+      # (a fine-grained token with Contents: read). The workflow's own token
+      # reads public ones only, and a private source then reads as 404.
+      - name: Pin each release-pinned plugin to its latest release
+        env:
+          GH_TOKEN: ${{ secrets.PLUGIN_SOURCES_TOKEN || github.token }}
+        run: python3 scripts/pin_releases.py .claude-plugin/marketplace.json >"$RUNNER_TEMP/moves"
+
+      - name: Commit the moved pins
+        run: |
+          cat "$RUNNER_TEMP/moves"
+          if git diff --quiet; then
+            echo "Every pin is at its latest release."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Pin $(paste -sd ';' "$RUNNER_TEMP/moves" | sed 's/;/; /g')"
+          git push origin HEAD:main

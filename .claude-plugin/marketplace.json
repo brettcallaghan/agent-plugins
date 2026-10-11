@@ -1,0 +1,34 @@
+{
+  "name": "brettcallaghan",
+  "metadata": {
+    "description": "Brett Callaghan's Claude Code plugins: specs (spec-first authoring, grooming and retrospectives) and release (cutting releases with the release CLI)"
+  },
+  "owner": {
+    "name": "Brett Callaghan",
+    "email": "14969027+brettcallaghan@users.noreply.github.com"
+  },
+  "plugins": [
+    {
+      "name": "specs",
+      "source": {
+        "source": "git-subdir",
+        "url": "brettcallaghan/specs",
+        "path": "plugin"
+      },
+      "description": "Spec-first development: authoring specs in Gherkin and EARS (ADRs, FRDs, requirements documents, architecture and feature blueprints, contracts), grooming approved feature blueprints into executable implementation plans, and retrospectives that turn friction into filed work"
+    },
+    {
+      "name": "release",
+      "source": {
+        "source": "git-subdir",
+        "url": "brettcallaghan/release",
+        "path": "plugin",
+        "ref": "v0.3.0"
+      },
+      "description": "Release management with the release CLI: the cut-release skill previews and cuts a release with the release standards built in, provisioning the CLI version the plugin pins; the changelog skill authors a release's changelog for the CLI"
+    }
+  ],
+  "renames": {
+    "sf": "specs"
+  }
+}

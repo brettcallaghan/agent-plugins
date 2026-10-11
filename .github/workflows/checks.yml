@@ -1,0 +1,32 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  marketplace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Pin script tests
+        run: python3 -m unittest discover -s scripts -v
+
+      # Bumping this pin is a deliberate change.
+      - name: Install the Claude Code CLI
+        if: ${{ !cancelled() }}
+        run: npm install -g @anthropic-ai/claude-code@2.1.292
+
+      - name: Validate the marketplace
+        if: ${{ !cancelled() }}
+        run: claude plugin validate . --strict
