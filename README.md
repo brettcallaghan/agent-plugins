@@ -6,7 +6,7 @@ the plugin.
 
 | Plugin | Source | Served at |
 |---|---|---|
-| `specs` | [brettcallaghan/specs](https://github.com/brettcallaghan/specs) `plugin/` | its default branch |
+| `specs` | [brettcallaghan/specs](https://github.com/brettcallaghan/specs) `plugin/` | its `stable` branch: the latest published release |
 | `release` | [brettcallaghan/release](https://github.com/brettcallaghan/release) `plugin/` | its `stable` branch: the latest published release |
 
 `release` depends on `specs`; installing it installs both.
