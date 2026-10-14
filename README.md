@@ -1,9 +1,5 @@
 # agent-plugins
 
-Brett Callaghan's Claude Code plugin marketplace, named `brettcallaghan`.
-It holds no plugin code: each entry points at the repository that develops
-the plugin.
-
 | Plugin | Source | Served at |
 |---|---|---|
 | `specs` | [brettcallaghan/specs](https://github.com/brettcallaghan/specs) `plugin/` | `release/v0`: its latest 0.x release |
