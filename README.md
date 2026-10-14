@@ -2,8 +2,8 @@
 
 | Plugin | Source | Served at |
 |---|---|---|
-| `specs` | [brettcallaghan/specs](https://github.com/brettcallaghan/specs) `plugin/` | `release/v0`: its latest 0.x release |
-| `release` | [brettcallaghan/release](https://github.com/brettcallaghan/release) `plugin/` | `release/v0`: its latest 0.x release |
+| `specs` | [brettcallaghan/specs](https://github.com/brettcallaghan/specs) | `release/v0`: its latest 0.x release |
+| `release` | [brettcallaghan/release](https://github.com/brettcallaghan/release) | `release/v0`: its latest 0.x release |
 
 `release` depends on `specs`; installing it installs both.
 
